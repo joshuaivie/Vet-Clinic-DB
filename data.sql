@@ -43,3 +43,22 @@ begin;
 	commit;
 end;
 select * from animals;
+
+insert into owners (full_name, age) values 
+  ('Sam Smith', 34),
+  ('Jennifer Orwell', 19),
+  ('Bob', 45),
+  ('Melody Pond', 77),
+  ('Dean Winchester', 14),
+  ('Jodie Whittaker', 38);
+  
+insert into species (name) values ('Pokemon'), ('Digimon');
+ 
+update animals set species_id = (select id from species where name = 'Digimon' ) where name like '%mon%';
+update animals set species_id = (select id from species where "name" = 'Pokemon') where species_id is null;
+
+update animals set owner_id = (select id from owners where full_name = 'Sam Smith') where name = 'Agumon';
+update animals set owner_id = (select id from owners where full_name = 'Jennifer Orwell') where name in ('Gabumon', 'Pikachu');
+update animals set owner_id = (select id from owners where full_name = 'Bob') where name in ('Devimon', 'Plantmon');
+update animals set owner_id = (select id from owners where full_name = 'Melody Pond') where name in ('Charmander', 'Squirtle', 'Blossom');
+update animals set owner_id = (select id from owners where full_name = 'Dean Winchester') where name in ('Angemon', 'Boarmon');
