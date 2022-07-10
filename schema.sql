@@ -10,3 +10,5 @@ CREATE TABLE animals (
     weight_kg decimal,
     PRIMARY KEY(id)
 );
+
+alter table animals add species text;
