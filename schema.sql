@@ -32,3 +32,29 @@ alter table animals add constraint FK_SPECIES foreign key (species_id) reference
 
 alter table animals add column owner_id integer;
 alter table animals add constraint FK_OWNER foreign key (owner_id) references owners (id) on delete set null;
+
+
+create table vets (
+    id integer generated always as identity,
+    name text,
+    age integer,
+    data_of_graduation date,
+    primary key (id)
+);
+
+create table specializations (
+    species_id integer not null,
+    vets_id integer not null,
+    constraint "FK_SPECIES" foreign key (species_id) references species (id) on delete set null,
+    constraint "FK_VETS" foreign key (vets_id) references vets (id) on delete set null,
+    primary key (species_id, vets_id)
+);
+
+create table visits (
+    animals_id integer not null,
+    vets_id integer not null,
+    visit_date date not null,
+    constraint "FK_ANIMALS" foreign key (animals_id) references animals (id) on delete set null,
+    constraint "FK_VETS" foreign key (vets_id) references vets (id) on delete set null,
+    primary key (animals_id, vets_id, visit_date)
+);
