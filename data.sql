@@ -63,6 +63,7 @@ update animals set owner_id = (select id from owners where full_name = 'Bob') wh
 update animals set owner_id = (select id from owners where full_name = 'Melody Pond') where name in ('Charmander', 'Squirtle', 'Blossom');
 update animals set owner_id = (select id from owners where full_name = 'Dean Winchester') where name in ('Angemon', 'Boarmon');
 
+insert into vets (name, age, date_of_graduation) VALUES ('William Tatcher', 45, '2000-04-23'), ('Maisy Smith', 26, '2019-01-17'), ('Stephanie Mendez', 64, '1981-05-04'), ('Jack Harkness', 38, '2008-06-08');
 
 insert into specializations (species_id, vets_id) values ((select id from species where name = 'Pokemon'), (select  id from vets where name = 'William Tatcher'));
 insert into specializations (species_id, vets_id) values ((select id from species where name = 'Pokemon'), (select id from vets where name = 'Stephanie Mendez'));
