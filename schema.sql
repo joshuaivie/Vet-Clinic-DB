@@ -58,3 +58,11 @@ create table visits (
     constraint "FK_VETS" foreign key (vets_id) references vets (id) on delete set null,
     primary key (animals_id, vets_id, visit_date)
 );
+
+alter table owners add COLUMN email varchar(120);
+
+create index visits_animals ON visits(animal_id);
+
+create index visits_vet_ids ON visits(vet_id);
+
+create index owners_emails ON owners(email);
